@@ -1,0 +1,49 @@
+
+<div class="divSpinner" *ngIf=showSpinner>
+  <img src="../../assets/images/Spinner-1s-200px.gif">
+</div> 
+
+ <div *ngIf="!showSpinner" class="row">
+  <div class="col-lg-3 col-md-4 col-6" *ngFor="let photo of AllPhotos; let i = index">
+   <img style="cursor:pointer" class="img-fluid img-thumbnail" src="{{photo.cropped_picture}}" (click)="showImage(photo,i)">
+  </div>
+ </div>
+
+
+ <div [style.display]="showModal ? 'block' : 'none'" class="modal" 
+ id="imagemodal" tableindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+ <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideImage()">&times;</button>
+    </div>
+    <div class="container">
+    <div class="modal-body">
+      <div class="img-wrapper">
+      <img src="{{previewImgSrc}}" id="imagepreview" style="width: 425px; height: 425px;" >
+      <div class="img-overlay">
+        <button class="btn btn-md btn-success" style="margin-left:20rem;margin-top:10rem;">+</button>
+      </div>
+    </div>
+      <div class="middle">
+        <div class="text" style="font-size: small; display: inline-block;"> <b>Author:</b> {{currentPhotoDetails.author}}</div>
+        <div class="text" style="font-size: small; display: inline-block;">&nbsp; <b>Camera:</b> {{currentPhotoDetails.camera}}</div>
+        <div class="text" style="font-size: small;">{{currentPhotoDetails.tags}}</div>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+      <div class="center">
+    <button  class="btn btn-default" [disabled]="spinnerVariable === true">
+      <img src="../../assets/images/left-arrow.png" (click)="changeImage(0)" width="20" />
+    </button>
+    <button  class="btn btn-default" [disabled]="spinnerVariable === true">
+      <img src="../../assets/images/right-arrow.png" (click)="changeImage(1)" width="20" />
+    </button>
+  </div>
+  </div>
+
+  </div>
+</div>
+
+</div>
